@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Online Store</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #121212;
+        color: #e0e0e0;
+        line-height: 1.6;
+    }
+
+    header {
+        background-color: #1f1f1f;
+        color: #ffffff;
+        padding: 20px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    header .logo {
+        font-size: 2em;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #64ffda;
+        transition: transform 0.3s ease;
+    }
+
+    header .logo:hover {
+        transform: scale(1.1);
+    }
+
+    header .search-bar {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    header .search-bar input {
+        padding: 10px 15px;
+        border-radius: 20px;
+        border: 1px solid #333;
+        background-color: #1e1e1e;
+        color: #ffffff;
+        width: 250px;
+    }
+
+    header .search-bar input:focus {
+        border-color: #64ffda;
+        box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+    }
+
+    header .search-bar button {
+        padding: 12px 20px;
+        background-color: #64ffda;
+        color: #000;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    header .search-bar button:hover {
+        background-color: #4ae7c4;
+        transform: translateY(-3px);
+    }
+
+
+    nav {
+        background-color: #1f1f1f;
+        display: flex;
+        justify-content: space-around;
+        padding: 15px 0;
+    }
+
+    nav a {
+        color: #64ffda;
+        text-decoration: none;
+        padding: 12px 18px;
+        font-size: 1.1em;
+        border-radius: 20px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    nav a:hover {
+        background-color: #333;
+        transform: translateY(-3px);
+    }
+
+    main {
+        padding: 30px;
+    }
+
+    .product {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px;
+        display: inline-block;
+        width: calc(25% - 40px);
+        box-sizing: border-box;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    .product img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+    .product img:hover {
+        transform: scale(1.1);
+    }
+
+    .product h2 {
+        font-size: 1.3em;
+        margin: 15px 0;
+        font-weight: 600;
+        color: #64ffda;
+    }
+
+    .product button {
+        background-color: #64ffda;
+        color: #000;
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 25px;
+        font-size: 1em;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .product button:hover {
+        background-color: #4ae7c4;
+        transform: translateY(-3px);
+    }
+
+    .product-detail {
+        background-color: #1e1e1e;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        max-width: 1000px;
+        margin: 50px auto;
+        display: flex;
+        flex-direction: column;
+        /* Cambié esto para que la imagen y el texto estén en una columna */
+        align-items: center;
+        justify-content: flex-start;
+        width: 90%;
+    }
+
+    .product-detail img {
+        width: 40%;
+        /* Aumenté el tamaño de la imagen */
+        height: auto;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .product-detail img:hover {
+        transform: scale(1.05);
+    }
+
+    .product-detail .text {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .product-detail h1 {
+        font-size: 3em;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .product-detail p {
+        font-size: 1.6em;
+        margin: 10px 0;
+        color: #98b3b6;
+    }
+
+    .product-detail .price {
+        font-size: 2em;
+        font-weight: bold;
+        color: #e74c3c;
+        margin-bottom: 30px;
+    }
+
+    .product-detail button {
+        margin-top: 20px;
+        background-color: #64ffda;
+        color: #000;
+        border: none;
+        padding: 15px 30px;
+        cursor: pointer;
+        border-radius: 25px;
+        font-size: 1.2em;
+        /* Aumenté el tamaño del botón */
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .product-detail button:hover {
+        background-color: #4ae7c4;
+        transform: translateY(-3px);
+    }
+
+    footer {
+        background-color: #1f1f1f;
+        color: #e0e0e0;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+
+    footer p {
+        font-size: 1.1em;
+        margin: 0;
+    }
+    #payment-form {
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+#payment-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #333;
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+#payment-form button {
+    padding: 12px 20px;
+    background-color: #64ffda;
+    color: #000;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+#payment-form button:hover {
+    background-color: #4ae7c4;
+    transform: translateY(-3px);
+}
+
+/* Estilo para la lista del carrito */
+#Carrito-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#Carrito-list li {
+    background-color: #1e293b;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#Carrito-list li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+#Carrito-list li button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+#Carrito-list li button:hover {
+    background-color: #c0392b;
+}
+/* Estilo para el botón dentro de cada item del carrito */
+#Carrito-list li button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Cambio de color al pasar el mouse por encima */
+#Carrito-list li button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Estilo para el botón "Proceed to Checkout" */
+#checkout {
+    background-color: #64ffda;
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%; /* Hacerlo de ancho completo */
+    max-width: 350px; /* Limitar el tamaño máximo */
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+}
+
+/* Cambio de color al pasar el mouse por encima */
+#checkout:hover {
+    background-color: #4ae7c4;
+    transform: translateY(-3px);
+}
+
+/* Efecto de presionar el botón */
+#checkout:active {
+    transform: translateY(1px);
+}
+
+
+</style>
+
+
+
+
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const categories = {
+            "Electronics": [
+                { name: "Remera de Pardo", price: "$19.99", img: "img/img_1.png", description: "Una remera con la cara de pardo es muy exlusiva." },
+                { name: "Niños de pardo", price: "$199.99", img: "img/Img_2.png", description: "¿Quieres un niño de Pardo? Compra uno de los muchos niños que pardo tiene en su sotano." },
+                { name: "Pardo peluche", price: "$29.99", img: "img/Img_3.png", description: "Un peluche ideal para los mas pequeños en la casa." },
+                { name: "Aire de Pardo ✨(OFERTA)✨ ", price: "$1.99", img: "img/Img_4.png", description: "Aire que respira pardo en una bolsa (si el aire esta contaminado no es nuestro problema)." }
+            ],
+            "Clothing": [
+                { name: "🔞Pack de Pardo🔞", price: "$99.99", img: "img/Img_5.png", description: "Quieres El pack de pardo 😳? Por solo 100$ podras obtenerlo y veras sus poderoso 3 centimetros 😈." },
+                { name: "🔞Dildo de Pardo 🔞", price: "$49.99", img: "img/Img_6.png", description: "Es un dildo😳... (Usado por el mismisimo Pardo)." },
+                { name: "Darka", price: "$00.01", img: "img/Img_7.png", description: "Te lo regalo si quieres." },
+                { name: "✨[MEGA PACK]✨ Tadas las redes de Pardo", price: "$69.99", img: "img/Img_8.png", description: "Redes de pardo, este pack incluye: Cuenta de youtube, Cuenta de Twich, Cuenta de TikTok, Cuenta de Xvideos, Cuenta de Pornhub, Cuenta de Xnxx, Cuenta de roblox, etc." }
+            ]
+        };
+
+        const Carrito = [];
+        const main = document.querySelector("main");
+        const navLinks = document.querySelectorAll("nav a");
+
+        const updateCarritoCount = () => {
+            const CarritoElement = document.querySelector(".Carrito");
+            CarritoElement.textContent = `🛒 Carrito (${Carrito.length})`;
+        };
+
+        const loadInicio = (filter = "") => {
+            main.innerHTML = "<h2>Todos los productos</h2>";
+            for (const category in categories) {
+                categories[category].forEach(product => {
+                    if (!filter || product.name.toLowerCase().includes(filter)) {
+                        const productDiv = document.createElement("div");
+                        productDiv.className = "product";
+                        productDiv.innerHTML = `
+                            <img src="${product.img}" alt="Imagen de ${product.name}">
+                            <h2>${product.name}</h2>
+                            <p>${product.price}</p>
+                            <button>Ver detalles</button>
+                        `;
+                        productDiv.querySelector("button").addEventListener("click", () => {
+                            showProductDetail(product);
+                        });
+                        main.appendChild(productDiv);
+                    }
+                });
+            }
+        };
+
+        const showProductDetail = (product) => {
+            main.innerHTML = `
+                <div class="product-detail">
+                    <img src="${product.img}" alt="Imagen de ${product.name}">
+                    <h2>${product.name}</h2>
+                    <p>${product.description}</p>
+                    <p><strong>${product.price}</strong></p>
+                    <button id="add-to-Carrito">Agregar al carrito</button>
+                    <button id="back-to-Inicio">Volver al inicio</button>
+                </div>
+            `;
+
+            document.querySelector("#add-to-Carrito").addEventListener("click", () => {
+                Carrito.push(product);
+                updateCarritoCount();
+                alert(`${product.name} ha sido agregado a tu carrito.`);
+            });
+
+            document.querySelector("#back-to-Inicio").addEventListener("click", () => loadInicio());
+        };
+
+        const showCarrito = () => {
+            if (Carrito.length === 0) {
+                main.innerHTML = "<p>Tu carrito está vacío.</p>";
+                return;
+            }
+
+            main.innerHTML = "<h2>Tu carrito</h2><ul id='Carrito-list'></ul><button id='checkout'>Ir a pagar</button>";
+            const CarritoList = document.querySelector("#Carrito-list");
+
+            Carrito.forEach((item, index) => {
+                const CarritoItem = document.createElement("li");
+                CarritoItem.innerHTML = `${item.name} - ${item.price} <button data-index='${index}'>Quitar</button>`;
+                CarritoItem.querySelector("button").addEventListener("click", (e) => {
+                    const index = e.target.getAttribute("data-index");
+                    Carrito.splice(index, 1);
+                    updateCarritoCount();
+                    showCarrito();
+                });
+                CarritoList.appendChild(CarritoItem);
+            });
+
+            document.querySelector("#checkout").addEventListener("click", () => {
+                document.querySelector("#payment-form").style.display = "block";
+                document.querySelector("#checkout").style.display = "none";
+            });
+        };
+
+        navLinks.forEach(link => {
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                const text = e.target.textContent;
+                if (text === "Carrito") {
+                    showCarrito();
+                } else if (text === "Inicio") {
+                    loadInicio();
+                }
+            });
+        });
+
+        document.querySelector(".Carrito").addEventListener("click", showCarrito);
+
+        const searchButton = document.querySelector("#search-button");
+        const searchInput = document.querySelector("#search-input");
+
+        searchButton.addEventListener("click", () => {
+            const filterText = searchInput.value.trim().toLowerCase();
+            loadInicio(filterText);
+        });
+
+        searchInput.addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+                const filterText = searchInput.value.trim().toLowerCase();
+                loadInicio(filterText);
+            }
+        });
+
+        document.querySelector("#complete-payment").addEventListener("click", () => {
+            const cardNumber = document.querySelector("#card-number").value.trim();
+            const expirationDate = document.querySelector("#expiration-date").value.trim();
+            const address = document.querySelector("#address").value.trim();
+
+            if (cardNumber.length > 0 && expirationDate && address) {
+                alert(`¡Pago procesado con éxito!`);
+                Carrito.length = 0;
+                updateCarritoCount();
+                document.querySelector("#payment-form").style.display = "none";
+                alert("¡Gracias por tu compra!");
+                loadInicio();
+
+                document.querySelector("#card-number").value = '';
+                document.querySelector("#expiration-date").value = '';
+                document.querySelector("#address").value = '';
+            } else {
+                alert("Por favor completa todos los campos antes de proceder.");
+            }
+        });
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                document.querySelector("#payment-form").style.display = "none";
+            }
+        });
+
+        loadInicio();
+    });
+</script>
+
+
+
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">PardoStore</div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Buscar productos...">
+            <button id="search-button">Search</button>
+        </div>
+        <div class="Carrito">🛒 Carrito (0)</div>
+    </header>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Carrito</a>
+    </nav>
+    <main>
+        <p>Cargando Productos...</p>
+    </main>
+    <div id="payment-form" style="display:none;">
+        <h3>Metodo de Pago</h3>
+        <input type="text" id="card-number" placeholder="Numero de tarjeta" maxlength="16" required>
+        <input type="text" id="expiration-date" placeholder="MM/YY" required>
+        <input type="text" id="address" placeholder="Direccion" required>
+        <button id="complete-payment">Realizar Pago</button>
+    </div>
+    <footer>
+        <p>&copy; 2024 Mortis. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
